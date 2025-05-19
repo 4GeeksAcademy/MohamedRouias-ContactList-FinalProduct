@@ -82,7 +82,8 @@ export const Home = () => {
 			.catch((err) => console.error("Delete error:", err));
 	};
 
-	const editContact = async (id, updatedData, dispatch, navigate) => {
+
+	{/*const editContact = async (id, updatedData, dispatch, navigate) => {
 		try {
 			const res = await fetch(`https://playground.4geeks.com/contact/${id}`, {
 				method: "PUT",
@@ -108,7 +109,8 @@ export const Home = () => {
 		} catch (err) {
 			console.error("Error al editar el contacto:", err);
 		}
-	};
+	}; */}
+	
 
 
 	return (
@@ -139,7 +141,7 @@ export const Home = () => {
 									<p>ID: {contact.id}</p>
 								</div>
 								<div>
-									<Link to={"/edit-contact/"}>
+									<Link to={`/edit-contact/${contact.id}`}>
 										<button className="btn btn-warning me-2">Edit</button>
 									</Link>
 									<button className="btn btn-sm " onClick={() => deleteContact(contact.id)}>🗑️</button>
