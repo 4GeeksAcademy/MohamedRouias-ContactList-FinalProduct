@@ -39,10 +39,12 @@ const Edit = () => {
 
 
 
+
     const handleChange = (e) => {
         setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
+            ...formData, //copia los otros campos que ya teníamos en el formulario
+            [e.target.name]: e.target.value// Acceder al "name" del inmput, 
+            //obtiene el valor escrito por el usuario
         });
     };
 
@@ -82,8 +84,9 @@ const Edit = () => {
 
     return (
         <div>
-            <h1>Editar Contacto</h1>
+
             <div className="container">
+                <h1>Editar Contacto</h1>
                 <div className="card mt-4 p-4">
                     <form onSubmit={handleSubmit}>
                         <div>
@@ -136,83 +139,20 @@ const Edit = () => {
                         </div>
 
 
-                        <button type="submit" className="btn btn-primary">
-                            Guardar Cambios
+                        <button type="submit" className="btn btn-primary mt-4 w-100">
+                            Save
                         </button>
+
+
                     </form>
+                    <Link to="/">
+                        <button className="btn btn-primary mt-3">Back home</button>
+                    </Link>
                 </div>
             </div>
-            <Link to="/">
-                <button className="btn btn-primary">Back home</button>
-            </Link>
+
         </div>
     )
-    {/* return (
-        <div>
-            <h1>Página EDIT</h1>
-            <div className="container">
-                <div className="card mt-4 p-4">
-                    <form>
-                        <div>
-                            <label for="inputName" className="form-label">Full Name</label>
-                            <input
-                                type="test"
-                                className="form-control"
-                                id="inputName"
-                                placeholder='Full Name'
-                            />
-                        </div>
-
-                        <div>
-                            <label for="inputEmail" className="form-label">Email address</label>
-                            <input
-                                type="email"
-                                className="form-control"
-                                id="inputPhone"
-                                placeholder='Email Address'
-                            />
-                        </div>
-
-
-                        <div>
-                            <label for="inputPhone" className="form-label">Phone</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="inputPhone"
-                                placeholder='Phone'
-                            />
-                        </div>
-
-                        <div>
-                            <label for="inputAddres" className="form-label">Address</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="inputAddress"
-                                placeholder='Address'
-                            />
-                        </div>
-
-
-                        <button
-                            type="submit"
-                            className="btn btn-primary mt-3"
-                            onClick={() => {
-                                //Lógica para hacer el POST 
-                                console.log("Se envió el formulario")
-                                navigate("/");
-                            }}>
-                            Submit
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <Link to="/">
-                <button className="btn btn-primary">Back home</button>
-            </Link>
-        </div>
-    )*/}
 }
 
 export default Edit;

@@ -46,12 +46,6 @@ export default function storeReducer(state, action) {
         contacts: state.contacts.filter(contact => contact.id !== action.payload)
       };
 
-    case "reset_contact":
-      // Limpia toda la lista de contactos
-      return {
-        ...state,
-        contacts: []
-      };
 
     default:
       return state;

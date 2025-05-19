@@ -1,0 +1,8 @@
+body {
+    background: #c5d8db;
+    background: linear-gradient(90deg, rgba(197, 216, 219, 1) 14%, rgba(0, 0, 0, 1) 100%, rgba(0, 0, 0, 1) 100%);
+}
+
+#add-btn {
+    margin-right: 0px;
+}

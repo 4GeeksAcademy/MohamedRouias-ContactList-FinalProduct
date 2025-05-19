@@ -11,7 +11,7 @@ export const Home = () => {
 		cargarAgenda();
 	}, []);
 
-	const cargarAgenda = async (slug) => {
+	const cargarAgenda = async () => {
 		try {
 			const res = await fetch("https://playground.4geeks.com/contact/agendas/MohamedRouias");
 			if (res.status === 404) {
@@ -42,7 +42,7 @@ export const Home = () => {
 
 			});
 			console.log("LA LISTA DE CONTACTOS HA SIDO CREADA!!")
-			getAgenda();
+			getAgenda();// NO SE SI HACE FALTA 
 			if (!res.ok) throw new Error("Error al crear agenda");
 
 			return true;
@@ -83,79 +83,71 @@ export const Home = () => {
 	};
 
 
-	{/*const editContact = async (id, updatedData, dispatch, navigate) => {
-		try {
-			const res = await fetch(`https://playground.4geeks.com/contact/${id}`, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify({
-					...updatedData,
-					agenda_slug: "MohamedRouias" // La API requiere mantener esto
-				})
-			});
 
-			if (!res.ok) throw new Error("Error al actualizar contacto");
 
-			const updatedContact = await res.json();
-
-			// Actualizar el contacto en el store
-			dispatch({ type: "edit_contact", payload: updatedContact });
-			console.log("Contacto ACTUALIZADO!!!!")
-			// Volver al home
-			navigate("/");
-
-		} catch (err) {
-			console.error("Error al editar el contacto:", err);
-		}
-	}; */}
-	
 
 
 	return (
 		<div className="text-center mt-5">
 			<h1>CONTACT LIST</h1>
 			<div className="container">
-				<ul className="list-group">
-					{/* Map over the 'todos' array from the store and render each contact as a list element */}
-					{store && store.contacts?.map((contact, index) => {
-						return (
-							<li
-								key={contact.id || index}  // React key for list items.
-								className="list-group-item d-flex justify-content-between"
-								style={{}}>
+				<Link to="/add-contact">
+					<button id="add-btn" className="btn btn-primary mb-3 ">Add Contact</button>
+				</Link>
+				<div className="container">
+					<ul className="list-group">
+						{/* Map over the 'todos' array from the store and render each contact as a list element */}
+						{store && store.contacts?.map((contact, index) => {
+							return (
+								<li
+									key={contact.id || index}  // React key for list items.
+									className="list-group-item d-flex justify-content-between"
+									style={{}}>
 
-								{/* Link to the detail page of this todo. */}
-								<img
-									src="https://randomuser.me/api/portraits/men/75.jpg"
-									alt="Profile"
-									className="rounded-circle me-3"
-									style={{ width: "50px", height: "50px", objectFit: "cover" }}
-								/>
-								<div>
-									<p className="">Contacto: {contact.name}</p>
-									<p className="">Email: {contact.email}</p>
-									<p className="">Teléfono: {contact.phone}</p>
-									<p className="">Dirección: {contact.address}</p>
-									<p>ID: {contact.id}</p>
-								</div>
-								<div>
-									<Link to={`/edit-contact/${contact.id}`}>
-										<button className="btn btn-warning me-2">Edit</button>
-									</Link>
-									<button className="btn btn-sm " onClick={() => deleteContact(contact.id)}>🗑️</button>
-								</div>
-							</li>
-						);
-					})}
-				</ul>
-				<br />
+									{/* Link to the detail page of this todo. */}
+									<img
+										src="https://randomuser.me/api/portraits/men/75.jpg"
+										alt="Profile"
+										className="rounded-circle me-3"
+										style={{ width: "50px", height: "50px", objectFit: "cover" }}
+									/>
+									<div className="">
+										<div>
+											<h4>{contact.name}</h4>
+										</div>
+										<div>
+											<i className="fa-solid fa-envelope mx-2"></i>
+											{contact.email}
+										</div>
+										<i className="fa-solid fa-phone-flip mx-2"></i>
+										{contact.phone}
+										<div>
+											<i class="fa-solid fa-location-dot mx-2"></i>
+											{contact.address}
+										</div>
+										
+									</div>
+									<div>
+										<Link to={`/edit-contact/${contact.id}`}>
 
+											<button className="btn me-2">
+												<i className="fa-solid fa-pencil"></i>
+											</button>
+										</Link>
+										<button className="btn btn-sm " onClick={() => deleteContact(contact.id)}>
+											<i class="fa-solid fa-trash"></i>
+										</button>
+									</div>
+								</li>
+							);
+						})}
+					</ul>
+					<br />
+
+				</div>
 			</div>
-			<Link to="/add-contact">
-				<button className="btn btn-primary">Add Contact</button>
-			</Link>
+
+
 			<div class="card m-4 p-4">
 				<h5 class="card-title">Special title treatment</h5>
 				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>

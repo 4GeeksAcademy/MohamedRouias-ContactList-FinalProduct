@@ -64,7 +64,7 @@ const AddContact = () => {
             <div>
               <label for="inputEmail" className="form-label">Email address</label>
               <input
-                type="text"
+                type="email"
                 className="form-control"
                 value={email}
                 placeholder='Email Address'
@@ -79,7 +79,7 @@ const AddContact = () => {
                 type="text"
                 className="form-control"
                 value={phone}
-                placeholder='Email Address'
+                placeholder='Phone'
                 onChange={(e)=>setPhone(e.target.value)}
               />
             </div>
@@ -112,7 +112,7 @@ const AddContact = () => {
                 addContact(newContact, dispatch, navigate);
               }}
             >
-              Submit
+              Add
             </button>
           </form>
         </div>
