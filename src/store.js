@@ -1,32 +1,60 @@
-export const initialStore=()=>{
-  return{
-    message: null,
-    todos: [
+export const initialStore = () => {
+  return {
+    slug: "MohamedRouias",
+    contacts: [
       {
-        id: 1,
-        title: "Make the bed",
-        background: null,
+        name: "",
+        phone: "",
+        email: "",
+        address: "",
+        id: 0
       },
-      {
-        id: 2,
-        title: "Do my homework",
-        background: null,
-      }
     ]
   }
 }
 
-export default function storeReducer(store, action = {}) {
-  switch(action.type){
-    case 'add_task':
+export default function storeReducer(state, action) {
+  switch (action.type) {
 
-      const { id,  color } = action.payload
-
+    case "set_contacts":
+      // Reemplaza toda la lista de contactos con los datos traídos de la API
       return {
-        ...store,
-        todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
+        ...state,
+        contacts: action.payload
       };
+
+    case "add_contact":
+      // Añade un nuevo contacto al array existente
+      return {
+        ...state,
+        contacts: [...state.contacts, action.payload]
+      };
+
+    case "edit_contact":
+      // Reemplaza un contacto existente con uno nuevo usando su ID
+      return {
+        ...state,
+        contacts: state.contacts.map(contact =>
+          contact.id === action.payload.id ? action.payload : contact
+        )
+      };
+  
+    case "delete_contact":
+      // Elimina un contacto por ID
+      return {
+        ...state,
+        contacts: state.contacts.filter(contact => contact.id !== action.payload)
+      };
+
+    case "reset_contact":
+      // Limpia toda la lista de contactos
+      return {
+        ...state,
+        contacts: []
+      };
+
     default:
-      throw Error('Unknown action.');
-  }    
+      return state;
+  }
 }
+
